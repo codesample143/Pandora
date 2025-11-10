@@ -5,6 +5,9 @@ import torch
 from torch import nn
 from torch import optim
 import chess.engine
+
+import threading
+
 # 8x8 grid of pieces.
 # OHE? options for piece encoding: OHE, Keys, Pairs, 
 # MLP that takes board as input (feed forward neural network)
@@ -99,9 +102,9 @@ train_inps = torch.stack(inpx)
 train_outs = torch.tensor(outx, dtype=torch.float32).unsqueeze(1) # Need a tensor of tessor of data
 
 criterion = nn.MSELoss()
-optimizer = optim.SGD(model.parameters(), lr=0.05)
+optimizer = optim.SGD(model.parameters(), lr=0.02)
 
-for epoch in range(250):
+for epoch in range(200):
     outputs = model(train_inps)
     loss = criterion(outputs, train_outs)
 
@@ -110,4 +113,4 @@ for epoch in range(250):
     optimizer.step()
 
     if (epoch + 1) % 10 == 0:
-        print(f"Epoch {epoch + 1}, Loss: {loss.item():.4f}")
+        print(f"Epoch {epoch + 1}, Loss: {loss.item():.10f}")
