@@ -6,7 +6,7 @@ class Evaluation(nn.Module):
     def __init__(self, layers): # Prev implementation: input_size, hidden_size1, hidden_size2, hidden_size3, output_size,
         super(Evaluation, self).__init__()
         self.layers = layers
-        self.fcs = []
+        self.fcs = nn.ModuleList()
         for layer_pair_index in range(1, len(layers)):
             last_size, _ = layers[layer_pair_index - 1]
             current_size, _ = layers[layer_pair_index]
