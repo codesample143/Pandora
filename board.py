@@ -55,7 +55,7 @@ def basic_eval(enc_board):
 
 
 # training data: inps = [chess board objects], outs = [values]
-def get_static_eval(b, stockfish_path='C:\\Users\\arunm\\Chess_K\\stockfish\\stockfish-windows-x86-64-avx2.exe'):
+def get_static_eval(b, stockfish_path='/Users/akaei/Desktop/C++ Projects/Pandora/stockfish/stockfish-macos-m1-apple-silicon'):
     fen = b.fen()
     # Connect to the Stockfish engine
     engine = chess.engine.SimpleEngine.popen_uci(stockfish_path)
@@ -90,7 +90,7 @@ def retmoves(b):
 # layers -> the layer list of tuples for network architecture
 # save name -> will not save if None, saves with name otherwise
 # trainfile -> the file name holding the master games
-def train(numgames, layers, epochs=100, lr=0.01, save_name=None, trainfile='C:\\Users\\arunm\\Chess_K\\AJ-OTB-PGN-000\\AJ-OTB-PGN-000.pgn', show=False):
+def train(numgames, layers, epochs=100, lr=0.01, save_name=None, trainfile='/Users/akaei/Desktop/C++ Projects/Pandora/AJ-OTB-PGN-00/AJ-OTB-PGN-000-002.pgn', show=False):
     # Model: Chess board obj -> score(float)
     # 64 nodes -> 128 nodes -> 32 nodes -> 10 nodes -> 1 node
     model = eval.Evaluation(layers)
@@ -217,7 +217,7 @@ def minimax_alpha_beta(board: chess.Board, depth: int, alpha: float, beta: float
                 
         return min_eval
 
-def get_book_move(board: chess.Board, BOOK_PATH='C:\\Users\\arunm\\Chess_K\\Titans.bin') -> chess.Move | None:
+def get_book_move(board: chess.Board, BOOK_PATH='/Users/akaei/Desktop/C++ Projects/Pandora/Titans.bin') -> chess.Move | None:
     """
     Looks up a move in the Polyglot opening book.
     Returns a Move object or None if the position is not in the book.
@@ -243,7 +243,7 @@ def get_book_move(board: chess.Board, BOOK_PATH='C:\\Users\\arunm\\Chess_K\\Tita
         print(f"Error reading Polyglot book: {e}")
         return None
 
-TABLEBASE_DIR = "C:\\Users\\arunm\\Chess_K\\syzygy" # <--- Update this path!
+TABLEBASE_DIR = "/Users/akaei/Desktop/C++ Projects/Pandora/syzygy" # <--- Update this path!
 
 # Initialize the tablebase reader once at the start of your program
 try:
